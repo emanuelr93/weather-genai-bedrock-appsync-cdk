@@ -1,0 +1,33 @@
+type Weather {
+	latitude: Float!
+	longitude: Float!,
+	daily: DailyWeather,
+	generated: GeneratedFields
+}
+
+type DailyWeather {
+	time: [AWSDate]!
+	weather_code: [Int]!
+	weather_description: [String]!
+	temperature_2m_max: [Float],
+	temperature_2m_min: [Float],
+	precipitation_sum: [Float],
+	rain_sum: [Float],
+	showers_sum: [Float],
+	snowfall_sum: [Float]
+}
+
+type GeneratedFields {
+	description: String,
+	recommendation: String
+}
+
+scalar AWSDate
+
+type Query {
+	getWeather(lat: Float!, long: Float!): Weather
+}
+
+schema {
+	query: Query
+}
